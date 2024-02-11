@@ -1,2 +1,11 @@
 /node_modules
-.gitignore
+test.js
+/.npm
+
+# Environment variables file
+.env
+
+# IDE or editor settings
+.vscode
+.idea
+*.sublime-workspace
