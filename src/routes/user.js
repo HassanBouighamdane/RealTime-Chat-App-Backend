@@ -5,7 +5,7 @@ const userController = require("../controllers/userController");
 router
     .route("/")
     .get(
-        userController.createUser
+        userController.getAllUsers
     )
 
     module.exports = router;
