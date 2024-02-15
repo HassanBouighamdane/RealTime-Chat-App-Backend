@@ -1,24 +1,14 @@
+require('dotenv').config({ path: './src/config/.env' });
 const express = require('express');
-const http = require('http');
-const socketIO = require('socket.io');
-const mongoose = require('mongoose');
-
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 const app = express();
-const server = http.createServer(app);
-const io = socketIO(server);
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+
+app.use(express.json());
+
+require("./src/routes/routes")(app);
 
 const PORT = process.env.PORT || 3000;
-
-// Serve static files from the "public" folder
-app.use(express.static('public'));
-
-// Start the server
-server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
